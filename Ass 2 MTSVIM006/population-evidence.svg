@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-labelledby="title desc">
+  <title id="title">Qualitative population evidence across simulation stages</title>
+  <desc id="desc">A qualitative visual abundance index derived from four screenshots, showing plant and animal abundance increasing during the run.</desc>
+  <rect width="900" height="520" fill="#fffaf0"/>
+  <text x="55" y="55" font-family="Georgia,serif" font-size="30" font-weight="bold" fill="#1e3d34">Assignment 2: stage evidence</text>
+  <text x="55" y="84" font-family="Arial,sans-serif" font-size="15" fill="#52645b">Qualitative visible-abundance index from screenshots, not engine telemetry</text>
+  <line x1="100" y1="420" x2="830" y2="420" stroke="#1e3d34" stroke-width="2"/>
+  <line x1="100" y1="130" x2="100" y2="420" stroke="#1e3d34" stroke-width="2"/>
+  <text x="34" y="425" font-family="Arial,sans-serif" font-size="14" fill="#52645b">0</text><text x="34" y="367" font-family="Arial,sans-serif" font-size="14" fill="#52645b">1</text><text x="34" y="309" font-family="Arial,sans-serif" font-size="14" fill="#52645b">2</text><text x="34" y="251" font-family="Arial,sans-serif" font-size="14" fill="#52645b">3</text><text x="34" y="193" font-family="Arial,sans-serif" font-size="14" fill="#52645b">4</text><text x="34" y="135" font-family="Arial,sans-serif" font-size="14" fill="#52645b">5</text>
+  <g fill="#15b957"><rect x="150" y="362" width="42" height="58"/><rect x="320" y="246" width="42" height="174"/><rect x="490" y="188" width="42" height="232"/><rect x="660" y="188" width="42" height="232"/></g>
+  <g fill="#7230db"><rect x="205" y="362" width="42" height="58"/><rect x="375" y="246" width="42" height="174"/><rect x="545" y="188" width="42" height="232"/><rect x="715" y="246" width="42" height="174"/></g>
+  <text x="142" y="453" font-family="Arial,sans-serif" font-size="14" fill="#1e3d34">Initial</text><text x="295" y="453" font-family="Arial,sans-serif" font-size="14" fill="#1e3d34">Early</text><text x="465" y="453" font-family="Arial,sans-serif" font-size="14" fill="#1e3d34">Middle</text><text x="635" y="453" font-family="Arial,sans-serif" font-size="14" fill="#1e3d34">Late</text>
+  <rect x="555" y="105" width="16" height="16" fill="#15b957"/><text x="580" y="119" font-family="Arial,sans-serif" font-size="14" fill="#1e3d34">plants/food coverage</text><rect x="730" y="105" width="16" height="16" fill="#7230db"/><text x="755" y="119" font-family="Arial,sans-serif" font-size="14" fill="#1e3d34">animals</text>
+  <text x="100" y="490" font-family="Arial,sans-serif" font-size="13" fill="#52645b">Interpretation: rising resources coincide with persistence and multiplication; this alone does not prove causation.</text>
+</svg>

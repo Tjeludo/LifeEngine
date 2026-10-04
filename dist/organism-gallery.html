@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Assignment 2 organism reference screenshots</title>
+  <style>
+    body { margin: 0; background: #f5efe2; font-family: Georgia, serif; color: #1e3d34; }
+    .gallery { display: grid; grid-template-columns: repeat(2, 420px); gap: 24px; padding: 24px; }
+    .card { width: 420px; height: 330px; box-sizing: border-box; padding: 22px; background: #fffaf0; border: 3px solid #1e3d34; border-radius: 14px; }
+    h2 { margin: 0 0 4px; font-size: 28px; }
+    p { margin: 0; color: #52645b; font: 16px Arial, sans-serif; }
+    svg { display: block; margin: 18px auto 0; }
+    .armor { fill: #756e9e; } .mover { fill: #7f86a8; } .mouth { fill: #e78b45; }
+    .eye { fill: #b9b3dc; } .killer { fill: #db5c4f; } .producer { fill: #4c9860; }
+    .food { fill: #8199aa; }
+    text { font-family: Arial, sans-serif; fill: #1e3d34; }
+  </style>
+</head>
+<body>
+  <main class="gallery">
+    <section class="card" data-species="rhino">
+      <h2>Rhino herbivore</h2><p>Armour, eye, mouth and mover</p>
+      <svg width="360" height="220" viewBox="0 0 360 220" aria-label="Rhino cell silhouette">
+        <rect class="armor" x="95" y="85" width="50" height="50"/><rect class="armor" x="45" y="85" width="50" height="50"/><rect class="armor" x="95" y="35" width="50" height="50"/><rect class="armor" x="95" y="135" width="50" height="50"/><rect class="mover" x="145" y="85" width="50" height="50"/><rect class="mouth" x="195" y="85" width="50" height="50"/><rect class="eye" x="195" y="35" width="50" height="50"/>
+        <text x="252" y="115" font-size="16">mouth</text><text x="252" y="65" font-size="16">eye</text>
+      </svg>
+    </section>
+    <section class="card" data-species="leopard">
+      <h2>Leopard predator</h2><p>Killer, eye, mouth, armour and mover</p>
+      <svg width="360" height="220" viewBox="0 0 360 220" aria-label="Leopard cell silhouette">
+        <rect class="armor" x="95" y="85" width="50" height="50"/><rect class="mover" x="145" y="85" width="50" height="50"/><rect class="killer" x="195" y="85" width="50" height="50"/><rect class="mouth" x="145" y="35" width="50" height="50"/><rect class="eye" x="195" y="35" width="50" height="50"/>
+        <text x="252" y="115" font-size="16">killer</text><text x="252" y="65" font-size="16">eye</text>
+      </svg>
+    </section>
+    <section class="card" data-species="grass">
+      <h2>Grass plant</h2><p>Three stationary producer cells</p>
+      <svg width="360" height="220" viewBox="0 0 360 220" aria-label="Grass producer silhouette">
+        <rect class="producer" x="80" y="85" width="50" height="50"/><rect class="producer" x="130" y="85" width="50" height="50"/><rect class="producer" x="180" y="85" width="50" height="50"/>
+        <circle class="food" cx="105" cy="65" r="10"/><circle class="food" cx="155" cy="155" r="10"/><circle class="food" cx="205" cy="65" r="10"/><text x="248" y="115" font-size="16">food</text>
+      </svg>
+    </section>
+    <section class="card" data-species="bush">
+      <h2>Bush plant</h2><p>Five stationary producer cells</p>
+      <svg width="360" height="220" viewBox="0 0 360 220" aria-label="Bush producer silhouette">
+        <rect class="producer" x="130" y="35" width="50" height="50"/><rect class="producer" x="80" y="85" width="50" height="50"/><rect class="producer" x="130" y="85" width="50" height="50"/><rect class="producer" x="180" y="85" width="50" height="50"/><rect class="producer" x="130" y="135" width="50" height="50"/>
+        <circle class="food" cx="105" cy="65" r="10"/><circle class="food" cx="205" cy="155" r="10"/><text x="248" y="115" font-size="16">food</text>
+      </svg>
+    </section>
+  </main>
+</body>
+</html>

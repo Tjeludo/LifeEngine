@@ -243,7 +243,7 @@ class Organism {
             if (cell==null) {
                 return false;
             }
-            if (cell.owner==this || cell.state==CellStates.empty || (!Hyperparams.foodBlocksReproduction && cell.state==CellStates.food)){
+            if (cell.owner==this || cell.state==CellStates.empty || ((this.anatomy.is_producer || !Hyperparams.foodBlocksReproduction) && cell.state==CellStates.food)){
                 continue;
             }
             return false;
