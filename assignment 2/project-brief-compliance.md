@@ -8,8 +8,10 @@ The seeded world satisfies the brief's minimum requirements:
 | --- | --- | ---: | ---: | ---: | --- |
 | Rhino | Animal | Yes | No | Yes | 7 cells: armour, eye, mouth and mover |
 | Leopard | Animal | Yes | No | Yes | 5 cells: armour, eye, mouth, killer and mover |
+| Zebra |Animal |2 Mouth | Yes | Yes | 5 producers in a plus form |
 | Grass | Plant | No | Yes | No | 3 producers in a horizontal form |
 | Bush | Plant | No | Yes | No | 5 producers in a plus form |
+
 
 The animals are mobile and consume food. They do not contain producer cells. The plants are stationary because they contain no mover cells, and they produce food through their producer cells. Grass and bush are distinct because their morphologies contain different numbers and arrangements of cells.
 
