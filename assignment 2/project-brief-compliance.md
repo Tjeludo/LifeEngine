@@ -8,7 +8,7 @@ The seeded world satisfies the brief's minimum requirements:
 | --- | --- | ---: | ---: | ---: | --- |
 | Rhino | Animal | Yes | No | Yes | 7 cells: armour, eye, mouth and mover |
 | Leopard | Animal | Yes | No | Yes | 5 cells: armour, eye, mouth, killer and mover |
-| Zebra |Animal |2 Mouth | Yes | Yes | 5 producers in a plus form |
+| Zebra |Animal | Mouth | Yes | Yes | 5 producers in a plus form |
 | Grass | Plant | No | Yes | No | 3 producers in a horizontal form |
 | Bush | Plant | No | Yes | No | 5 producers in a plus form |
 
