@@ -1,0 +1,202 @@
+{
+ "variant": "full",
+ "seed": 5,
+ "total": 40000,
+ "overrides": {},
+ "ticks_run": 40000,
+ "all_animals_extinct_at": null,
+ "secs": 211.7,
+ "final": {
+  "tick": 40000,
+  "zebra": 123,
+  "rhino": 0,
+  "leopard": 0,
+  "grass": 760,
+  "bush": 32,
+  "tree": 122,
+  "food": 729,
+  "browse": 1029,
+  "water": 0.508,
+  "zebra_mouths": 2
+ },
+ "events": [
+  {
+   "tick": 1610,
+   "lineage": "fire",
+   "event": "fire",
+   "burnt": 8,
+   "plants_killed": 3
+  },
+  {
+   "tick": 3300,
+   "lineage": "leopard",
+   "event": "collapse",
+   "peak": 24,
+   "peak_tick": 900
+  },
+  {
+   "tick": 3400,
+   "lineage": "leopard",
+   "event": "extinct",
+   "peak": 24,
+   "peak_tick": 900
+  },
+  {
+   "tick": 8710,
+   "lineage": "fire",
+   "event": "fire",
+   "burnt": 22,
+   "plants_killed": 2
+  },
+  {
+   "tick": 9000,
+   "lineage": "rhino",
+   "event": "collapse",
+   "peak": 37,
+   "peak_tick": 1800
+  },
+  {
+   "tick": 10400,
+   "lineage": "rhino",
+   "event": "extinct",
+   "peak": 37,
+   "peak_tick": 1800
+  },
+  {
+   "tick": 13330,
+   "lineage": "fire",
+   "event": "fire",
+   "burnt": 10,
+   "plants_killed": 5
+  },
+  {
+   "tick": 13510,
+   "lineage": "fire",
+   "event": "fire",
+   "burnt": 1,
+   "plants_killed": 1
+  },
+  {
+   "tick": 15070,
+   "lineage": "fire",
+   "event": "fire",
+   "burnt": 1,
+   "plants_killed": 1
+  },
+  {
+   "tick": 15430,
+   "lineage": "fire",
+   "event": "fire",
+   "burnt": 1,
+   "plants_killed": 0
+  },
+  {
+   "tick": 19600,
+   "lineage": "fire",
+   "event": "fire",
+   "burnt": 3,
+   "plants_killed": 2
+  },
+  {
+   "tick": 20390,
+   "lineage": "fire",
+   "event": "fire",
+   "burnt": 1,
+   "plants_killed": 1
+  },
+  {
+   "tick": 25610,
+   "lineage": "fire",
+   "event": "fire",
+   "burnt": 2,
+   "plants_killed": 1
+  },
+  {
+   "tick": 27210,
+   "lineage": "fire",
+   "event": "fire",
+   "burnt": 12,
+   "plants_killed": 4
+  },
+  {
+   "tick": 29740,
+   "lineage": "fire",
+   "event": "fire",
+   "burnt": 4,
+   "plants_killed": 2
+  },
+  {
+   "tick": 29850,
+   "lineage": "fire",
+   "event": "fire",
+   "burnt": 9,
+   "plants_killed": 3
+  },
+  {
+   "tick": 29920,
+   "lineage": "fire",
+   "event": "fire",
+   "burnt": 1,
+   "plants_killed": 1
+  },
+  {
+   "tick": 34530,
+   "lineage": "fire",
+   "event": "fire",
+   "burnt": 1,
+   "plants_killed": 1
+  },
+  {
+   "tick": 36770,
+   "lineage": "fire",
+   "event": "fire",
+   "burnt": 3,
+   "plants_killed": 1
+  },
+  {
+   "tick": 39070,
+   "lineage": "fire",
+   "event": "fire",
+   "burnt": 2,
+   "plants_killed": 1
+  }
+ ],
+ "peaks": {
+  "tree": {
+   "peak": 122,
+   "peak_tick": 40000,
+   "collapsed": false,
+   "extinct": false
+  },
+  "bush": {
+   "peak": 129,
+   "peak_tick": 600,
+   "collapsed": false,
+   "extinct": false
+  },
+  "grass": {
+   "peak": 790,
+   "peak_tick": 37200,
+   "collapsed": false,
+   "extinct": false
+  },
+  "rhino": {
+   "peak": 37,
+   "peak_tick": 1800,
+   "collapsed": true,
+   "extinct": true
+  },
+  "zebra": {
+   "peak": 161,
+   "peak_tick": 20200,
+   "collapsed": false,
+   "extinct": false
+  },
+  "leopard": {
+   "peak": 24,
+   "peak_tick": 900,
+   "collapsed": true,
+   "extinct": true
+  }
+ }
+}

@@ -62,6 +62,12 @@
 							<div class='cell-legend-type' id='armor' title="Armor: Negates affects of killer cell."></div>
 							<div class='cell-legend-type' id='eye' title="Eye: Observes cells and decides movement."></div>
 							<div class='cell-legend-type' id='food' title="Food: Not part of an organism. Once an organism has eaten enough food, it will reproduce."></div>
+							<div class='cell-legend-type' id='woody' title="Woody: Bush producer. Produces browse and uses less soil water."></div>
+							<div class='cell-legend-type' id='browse' title="Browse: Food from bushes. Less nutritious for grazers."></div>
+							<div class='cell-legend-type' id='meat' title="Meat: Carcass of a dead animal. Nutritious for organisms with killer cells."></div>
+							<div class='cell-legend-type' id='horn' title="Horn: Immune to killers, gores attackers, tramples plants."></div>
+							<div class='cell-legend-type' id='stripe' title="Stripe: Herd camouflage against predator eyes."></div>
+							<div class='cell-legend-type' id='cache' title="Cache: Stores surplus energy for starvation."></div>
 							<div class='cell-legend-type' id='wall' title="Wall: Not part of an organism. Blocks movement and reproduction."></div>
 						</div><br>
 					</div>
@@ -100,6 +106,14 @@
 								<div class='cell-type' id='killer' title="Killer: Harms organisms in adjacent cells."></div>
 								<div class='cell-type' id='armor' title="Armor: Negates affects of killer cell."></div>
 								<div class='cell-type' id='eye' title="Eye: Looks for cells to move away from or towards. Click again on a placed cell to rotate"></div>
+							</div>
+							<div style='grid-column: 3;'>
+								<div class='cell-type' id='woody' title="Woody: Bush producer. Produces browse."></div>
+								<div class='cell-type' id='horn' title="Horn: Immune to killers, gores attackers, tramples plants."></div>
+							</div>
+							<div style='grid-column: 4;'>
+								<div class='cell-type' id='stripe' title="Stripe: Herd camouflage against predator eyes."></div>
+								<div class='cell-type' id='cache' title="Cache: Stores surplus energy."></div>
 							</div>
 
 							<button id='clear-editor'>Clear</button>
@@ -151,6 +165,12 @@
 									<option value="killer">killer</option>
 									<option value="armor">armor</option>
 									<option value="eye">eye</option>
+									<option value="browse">browse</option>
+									<option value="meat">meat</option>
+									<option value="woody">woody</option>
+									<option value="horn">horn</option>
+									<option value="stripe">stripe</option>
+									<option value="cache">cache</option>
 								</select>
 
 								<label for="reaction-edit">Reaction: </label>

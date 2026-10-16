@@ -86,6 +86,18 @@ class EditorController extends CanvasController{
                 case "eye":
                     self.edit_cell_type = CellStates.eye;
                     break;
+                case "woody":
+                    self.edit_cell_type = CellStates.woody;
+                    break;
+                case "horn":
+                    self.edit_cell_type = CellStates.horn;
+                    break;
+                case "stripe":
+                    self.edit_cell_type = CellStates.stripe;
+                    break;
+                case "cache":
+                    self.edit_cell_type = CellStates.cache;
+                    break;
             }
             $(".cell-type" ).css( "border-color", "black" );
             var selected = '#'+this.id+'.cell-type';

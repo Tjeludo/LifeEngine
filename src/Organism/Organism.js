@@ -24,6 +24,9 @@ class Organism {
         this.ignore_brain_for = 0;
         this.mutability = 5;
         this.damage = 0;
+        this.cache = 0;
+        this.hunger = 0;
+        this.lineage = '';
         this.brain = new Brain(this);
         if (parent != null) {
             this.inherit(parent);
@@ -34,6 +37,7 @@ class Organism {
         this.move_range = parent.move_range;
         this.mutability = parent.mutability;
         this.species = parent.species;
+        this.lineage = parent.lineage;
         for (var c of parent.anatomy.cells){
             //deep copy parent cells
             this.anatomy.addInheritCell(c);
@@ -45,15 +49,54 @@ class Organism {
 
     // amount of food required before it can reproduce
     foodNeeded() {
-        return this.anatomy.is_mover ? this.anatomy.cells.length + Hyperparams.extraMoverFoodCost : this.anatomy.cells.length;
+        var need = this.anatomy.is_mover ? this.anatomy.cells.length + Hyperparams.extraMoverFoodCost : this.anatomy.cells.length;
+        if (Hyperparams.armorFoodCost > 0)
+            need += this.anatomy.countCells(CellStates.armor) * Hyperparams.armorFoodCost; // thick hide is costly to grow
+        return need;
     }
 
     lifespan() {
-        return this.anatomy.cells.length * Hyperparams.lifespanMultiplier;
+        var span = this.anatomy.cells.length * Hyperparams.lifespanMultiplier;
+        if (Hyperparams.treeLifespanFactor > 1) // woody tree tissue is long-lived
+            span += this.anatomy.countCells(CellStates.tree) * Hyperparams.lifespanMultiplier * (Hyperparams.treeLifespanFactor - 1);
+        return span;
+    }
+
+    cacheCapacity() {
+        var n = 0;
+        for (var cell of this.anatomy.cells)
+            if (cell.state == CellStates.cache) n++;
+        return n * Hyperparams.cacheCapacity;
+    }
+
+    // Movers pay an energy upkeep. Each missed payment (no food in hand or in the cache) adds hunger;
+    // a payment clears it. An organism dies after starvationTolerance missed payments in a row.
+    metabolise() {
+        var cost = Hyperparams.metabolismCost;
+        if (this.food_collected >= cost) {
+            this.food_collected -= cost;
+            this.hunger = 0;
+            return;
+        }
+        if (this.cache >= cost) {
+            this.cache -= cost;
+            this.hunger = 0;
+            this.env.eco_stats.cache_withdrawals++;
+            return;
+        }
+        this.food_collected = 0;
+        this.hunger++;
+        if (this.hunger >= Hyperparams.starvationTolerance) {
+            this.last_harm = 'starvation';
+            this.die();
+        }
     }
 
     maxHealth() {
-        return this.anatomy.cells.length;
+        var hp = this.anatomy.cells.length;
+        if (Hyperparams.armorHealth > 0)
+            hp += this.anatomy.countCells(CellStates.armor) * Hyperparams.armorHealth; // thick hide absorbs damage
+        return hp;
     }
 
     reproduce() {
@@ -109,6 +152,7 @@ class Organism {
             org.c = new_c;
             org.r = new_r;
             this.env.addOrganism(org);
+            this.env.eco_stats.recordBirth(org);
             org.updateGrid();
             if (mutated) {
                 FossilRecord.addSpecies(org, this.species);
@@ -118,6 +162,16 @@ class Organism {
             }
         }
         Math.max(this.food_collected -= this.foodNeeded(), 0);
+    }
+
+    // Ablation control: a lineage may be capped at a number of cells of a type (e.g. zebras at 1 mouth)
+    capBlocks(state, replacing=null) {
+        let caps = Hyperparams.lineageCellCaps && Hyperparams.lineageCellCaps[this.lineage];
+        if (!caps || caps[state.name] === undefined)
+            return false;
+        if (replacing && replacing.state == state)
+            return false;
+        return this.anatomy.countCells(state) >= caps[state.name];
     }
 
     mutate() {
@@ -130,7 +184,7 @@ class Organism {
             let growth_direction = Neighbors.all[Math.floor(Math.random() * Neighbors.all.length)]
             let c = branch.loc_col+growth_direction[0];
             let r = branch.loc_row+growth_direction[1];
-            if (this.anatomy.canAddCellAt(c, r)){
+            if (this.anatomy.canAddCellAt(c, r) && !this.capBlocks(state)){
                 added = true;
                 this.anatomy.addRandomizedCell(state, c, r);
             }
@@ -138,8 +192,10 @@ class Organism {
         if (this.calcRandomChance(Hyperparams.changeProb)){
             let cell = this.anatomy.getRandomCell();
             let state = CellStates.getRandomLivingType();
-            this.anatomy.replaceCell(state, cell.loc_col, cell.loc_row);
-            changed = true;
+            if (!this.capBlocks(state, cell)) {
+                this.anatomy.replaceCell(state, cell.loc_col, cell.loc_row);
+                changed = true;
+            }
         }
         if (this.calcRandomChance(Hyperparams.removeProb)){
             if(this.anatomy.cells.length > 1) {
@@ -234,7 +290,7 @@ class Organism {
     }
 
     isPassableCell(cell, parent){
-        return cell != null && (cell.state == CellStates.empty || cell.owner == this || cell.owner == parent || cell.state == CellStates.food);
+        return cell != null && (cell.state == CellStates.empty || cell.owner == this || cell.owner == parent || CellStates.isEdible(cell.state));
     }
 
     isClear(col, row, rotation=this.rotation) {
@@ -243,15 +299,22 @@ class Organism {
             if (cell==null) {
                 return false;
             }
-            if (cell.owner==this || cell.state==CellStates.empty || ((this.anatomy.is_producer || !Hyperparams.foodBlocksReproduction) && cell.state==CellStates.food)){
+            if (cell.owner==this || cell.state==CellStates.empty || ((this.anatomy.is_producer || !Hyperparams.foodBlocksReproduction) && CellStates.isEdible(cell.state))){
                 continue;
+            }
+            if (cell.state==CellStates.water && Hyperparams.riverCrossCells > 0 && this.anatomy.cells.length >= Hyperparams.riverCrossCells) {
+                continue; // only large animals can wade the river
+            }
+            if (this.anatomy.has_horn && (cell.state==CellStates.food || cell.state==CellStates.browse)) {
+                continue; // horned organisms push through (and trample) plant food
             }
             return false;
         }
         return true;
     }
 
-    harm() {
+    harm(cause='attack') {
+        this.last_harm = cause;
         this.damage++;
         if (this.damage >= this.maxHealth() || Hyperparams.instaKill) {
             this.die();
@@ -259,11 +322,16 @@ class Organism {
     }
 
     die() {
+        var remains = CellStates.food;
+        if (Hyperparams.carcassMeat)
+            remains = this.anatomy.is_mover ? CellStates.meat : CellStates.empty;
         for (var cell of this.anatomy.cells) {
             var real_c = this.c + cell.rotatedCol(this.rotation);
             var real_r = this.r + cell.rotatedRow(this.rotation);
-            this.env.changeCell(real_c, real_r, CellStates.food, null);
+            this.env.changeCell(real_c, real_r, remains, null);
         }
+        if (this.env.eco_stats)
+            this.env.eco_stats.recordDeath(this);
         this.species.decreasePop();
         this.living = false;
     }
@@ -285,6 +353,11 @@ class Organism {
         if (this.food_collected >= this.foodNeeded()) {
             this.reproduce();
         }
+        if (Hyperparams.metabolismInterval > 0 && this.anatomy.is_mover && this.lifetime % Hyperparams.metabolismInterval == 0) {
+            this.metabolise();
+            if (!this.living)
+                return this.living;
+        }
         for (var cell of this.anatomy.cells) {
             cell.performFunction();
             if (!this.living)
@@ -301,6 +374,14 @@ class Organism {
                 this.ignore_brain_for --;
             }
             var moved = this.attemptMove();
+            if (moved && Hyperparams.moversAddSpeed && changed_dir && this.brain.reacting_to_organism) {
+                // sprinting: when chasing or fleeing another organism, each extra mover cell gives
+                // one extra step per tick, up to maxSpeed. Grazing and wandering stay at one step.
+                var steps = Math.min(this.anatomy.moverCount(), Hyperparams.maxSpeed);
+                for (var i=1; i<steps && moved; i++)
+                    moved = this.attemptMove();
+                moved = true;
+            }
             if ((this.move_count > this.move_range && !changed_dir) || !moved){
                 var rotated = this.attemptRotate();
                 if (!rotated) {
