@@ -145,3 +145,33 @@ ax[0].set_title('Ablations (grey) and sweeps (green) against the full design (or
 for a in ax: a.grid(axis='y', alpha=.3)
 fig.tight_layout(); fig.savefig(os.path.join(FIG, 'comparison-40k.png'), dpi=120); plt.close(fig)
 print('figures written to', FIG)
+
+# ---- follow-up runs ----
+if os.path.exists(os.path.join(OUT, 'extra', 'leopards48-1')):
+    timeline('extra/leopards48-1', [
+        ('frame-000000.png', '48 leopards seeded'), ('event-000500-zebra-collapse.png', 'herd eaten'), ('event-001300-zebra-extinct.png', 'last zebra'),
+        ('event-003800-leopard-extinct.png', 'leopards starve'), ('frame-020000.png', 'rhinos alone'), ('frame-060000.png', 'end of run')],
+        'timeline-leopards48.png', 'Follow-up: 48 leopards eat every zebra within 1,300 ticks, then starve', extra=traits_extra)
+    timeline('extra/long-dry-3', [
+        ('frame-000000.png', 'seeded, low rain'), ('frame-050000.png', 'zebras at 2 mouths'), ('frame-100000.png', ''),
+        ('frame-150000.png', 'food cells falling'), ('event-160100-zebra-extinct.png', 'zebras extinct'), ('frame-200000.png', 'grass crowds the map')],
+        'timeline-long-dry-3.png', 'Follow-up: 200k ticks with low rain. Food falls and zebras evolve 2 to 2.8 mouths, but food keeps falling after they die', extra=traits_extra)
+    # follow-up summary chart: zebra survival, leopard extinction, max mouths, burnt cells
+    S2 = [r for r in json.load(open(os.path.join(OUT, 'summary.json'))) if r['group'] == 'extra']
+    order2 = ['long-default', 'long-dry', 'leopards32', 'leopards48', 'fire-strong', 'fire-extreme']
+    burnt = {}
+    for c in order2:
+        tot = []
+        for s in (1, 2, 3):
+            ev = json.load(open(os.path.join(OUT, 'extra', f'{c}-{s}', 'events.json')))
+            tot.append(sum(e['burnt'] for e in ev['events'] if e['event'] == 'fire'))
+        burnt[c] = sum(tot) / 3
+    fig, ax = plt.subplots(1, 3, figsize=(15, 4))
+    alive = [sum(1 for r in S2 if r['condition'] == c and r['zebra'] == 'persisted') for c in order2]
+    lext = [sum(float(r['leopard_extinct_tick']) for r in S2 if r['condition'] == c) / 3000 for c in order2]
+    ax[0].bar(order2, alive, color='#1F1A14'); ax[0].set_title('Zebra lineages alive at the end (of 3)'); ax[0].set_ylim(0, 3)
+    ax[1].bar(order2, lext, color='#D98E04'); ax[1].set_title('Leopard extinction (thousand ticks, mean)')
+    ax[2].bar(order2, [burnt[c] for c in order2], color='#B23A3A'); ax[2].set_title('Cells burnt per run (mean)')
+    for a in ax: a.tick_params(axis='x', rotation=35); a.grid(axis='y', alpha=.3)
+    fig.tight_layout(); fig.savefig(os.path.join(FIG, 'followup-summary.png'), dpi=120); plt.close(fig)
+    print('follow-up burnt', burnt)

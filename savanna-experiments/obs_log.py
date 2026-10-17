@@ -45,7 +45,7 @@ def describe(s, prev):
 def main():
     lines = ['# Observation log', '',
              'Generated from the logger (every 100 ticks) at each saved screenshot. Paths are relative to `savanna-experiments/output/`.', '']
-    for group in ['base', 'main']:
+    for group in ['base', 'main', 'mech', 'extra']:
         for d in sorted(glob.glob(os.path.join(OUT, group, '*'))):
             if not os.path.exists(os.path.join(d, 'log.csv')):
                 continue

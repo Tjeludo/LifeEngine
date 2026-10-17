@@ -106,6 +106,8 @@ else {
     if (variant === 'nowater') controls.waterEnabled = false;
     if (variant === 'nograze') controls.grazeProb = 0;
     if (variant === 'noleopard') COUNTS.leopard = 0;
+    if (variant === 'leopards32') COUNTS.leopard = 32; // follow-up: can a denser predator population persist?
+    if (variant === 'leopards48') COUNTS.leopard = 48;
     if (variant === 'mouthcap') controls.lineageCellCaps = {zebra: {mouth: 1}};
     if (variant === 'noriver') river = false;
     if (variant === 'notrees') { COUNTS.tree = 0; controls.cacheNeedsTree = false; }

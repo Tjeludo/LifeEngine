@@ -78,9 +78,9 @@ const axis = {catAxisLabelColor: '555555', valAxisLabelColor: '555555', catAxisL
 // 1. Title
 let s = slide('TITLE_DARK', 'Introduction');
 s.addText('Reproducing Evolutionary Suicide in a Digital Savanna', {placeholder: 'title'});
-s.addText('Zebras, rhinos, leopards, grass and bushes in the Life Engine  ·  97 runs, base vs modified engine', {placeholder: 'body'});
+s.addText('Zebras, rhinos, leopards, grass and bushes in the Life Engine  ·  115 runs, base vs modified engine', {placeholder: 'body'});
 img(s, FIG + '/species-modified.png', 0.7, 4.3, 10.0, 1732 / 450);
-s.addNotes('We seeded a savanna in the Life Engine and asked whether a species can adapt its way into extinction. We ran the unmodified engine and our modified savanna: 97 runs in total.');
+s.addNotes('We seeded a savanna in the Life Engine and asked whether a species can adapt its way into extinction. We ran the unmodified engine and our modified savanna: 115 runs in total, including 18 follow-ups.');
 
 // 2. Question and evidence rule
 s = slide('CONTENT', 'Introduction');
@@ -254,6 +254,22 @@ s.addChart(pres.charts.LINE, [
 text(s, 'Once leopards are gone, eyes, stripes and the kick are dead weight. A smaller body breeds on less food and a second mouth eats faster. Grass food never crashed (500 to 2,000 cells), so the trait never destroyed its own food: adaptation, not suicide.',
     {x: 8.3, y: 4.0, w: 4.4, h: 2.8, fontSize: 15});
 
+// 14b. Follow-up runs
+s = slide('CONTENT', 'Experiments');
+s.addText('Longer, drier, more predators, more fire: same verdict', {placeholder: 'title'});
+const fu = [['200k ticks, 40% rain', HEX.dk1, 'Zebras evolved up to 2.8 mouths as food fell, then died out. Food kept falling after they were gone: grass crowding, not grazing.'],
+    ['32 and 48 leopards', HEX.accent1, '48 leopards ate the whole herd in about 1,300 ticks, then starved: over-exploitation from density, not an evolved trait.'],
+    ['10x fire chance', HEX.accent4, 'Burning rose only 2.6x and no fire passed 160 cells. Patchy plants on wet soil starve fires of fuel.']];
+fu.forEach((f, i) => {
+    const x = 0.6 + i * 4.1;
+    card(s, x, 1.35, 3.85, 1.7);
+    text(s, f[0], {x: x + 0.25, y: 1.5, w: 3.4, h: 0.45, fontSize: 18, bold: true, color: f[1], fontFace: 'Cambria'});
+    text(s, f[2], {x: x + 0.25, y: 2.0, w: 3.4, h: 1.0, fontSize: 13});
+});
+img(s, FIG + '/timeline-long-dry-3.png', 0.6, 3.3, 5.95, 2448 / 1234);
+img(s, FIG + '/timeline-leopards48.png', 6.75, 3.3, 5.95, 2448 / 1234);
+s.addNotes('18 follow-up runs, 3 seeds each: 200k default, 200k dry, 32 and 48 leopards, strong and extreme fire. None produced zebra overgrazing suicide or a persistent predator.');
+
 // 15. Answers
 s = slide('CONTENT', 'Conclusions');
 s.addText('Answers to the brief', {placeholder: 'title'});
@@ -278,7 +294,7 @@ text(s, [
     {text: '3 seeds per ablation and sweep: one seed of difference is noise', options: {bullet: true, breakLine: true}},
     {text: 'Rules were rebalanced during testing (leopard body, sprint, armour, weapons) before the final runs', options: {bullet: true, breakLine: true}},
     {text: 'Our overgrazing hypothesis was not observed in 100k ticks', options: {bullet: true, breakLine: true}},
-    {text: 'Fires stayed small; 16 leopards never persisted', options: {bullet: true}}], {x: 0.9, y: 2.2, w: 5.3, h: 4.2, fontSize: 15, paraSpaceAfter: 8});
+    {text: 'Fires stayed small and leopards never persisted, even with 10x fire and 3x leopards', options: {bullet: true}}], {x: 0.9, y: 2.2, w: 5.3, h: 4.2, fontSize: 15, paraSpaceAfter: 8});
 card(s, 6.8, 1.4, 5.9, 4.2, 'EEF5EA');
 text(s, 'No outcome is hard-coded', {x: 7.1, y: 1.6, w: 5.3, h: 0.5, fontSize: 20, bold: true, color: HEX.accent2, fontFace: 'Cambria'});
 text(s, [
