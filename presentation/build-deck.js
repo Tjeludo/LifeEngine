@@ -98,79 +98,135 @@ crit.forEach((c, i) => {
 text(s, 'All four: evolutionary suicide.  Three, with growth and a trait: suicide candidate.  No growth: failure to adapt.  Mostly killed by another species: predation.', {x: 0.6, y: 5.8, w: 12.1, h: 0.8, fontSize: 15, bold: true, color: HEX.dk2});
 s.addNotes('This is the evidence rule we committed to in Assignment 3, now applied automatically by our analysis script to every run.');
 
-// 3. Species
+// 3. Species: base vs modified
 s = slide('CONTENT', 'Introduction');
-s.addText('Five species built on real strengths and weaknesses', {placeholder: 'title'});
-img(s, FIG + '/species-modified.png', 0.6, 1.3, 12.1, 1732 / 450);
-const sp = [['Zebra', HEX.dk1, 'Sprints when chasing or fleeing; herd stripes; rear kick wounds leopards', 'One mouth; bush food worth 0.35; no armour'],
-    ['Rhino', HEX.accent5, 'Horn immune to killers and gores attackers; 20 health', 'Slow; 16 food per calf because armour is costly'],
-    ['Leopard', HEX.accent1, 'Sprint; bite does 4 damage; eats its kill on the spot; caches surplus near trees', 'Meat only; no armour; kicked and gored by prey']];
+s.addText('Two versions of each species: base and modified', {placeholder: 'title'});
+img(s, FIG + '/species-base.png', 0.6, 1.3, 5.9, 1446 / 450);
+img(s, FIG + '/species-modified.png', 6.75, 1.3, 5.95, 1732 / 450);
+card(s, 0.6, 3.35, 12.1, 1.0, 'FFF4DC');
+text(s, [{text: 'About movers. ', options: {bold: true}}, {text: 'In the original Life Engine one mover is enough and extra movers add nothing: every animal moves one cell per tick. So base zebras and leopards have one mover. Sprinting with extra movers is our own rule, used only in the modified engine.'}],
+    {x: 0.9, y: 3.47, w: 11.5, h: 0.8, fontSize: 15});
+const sp = [['Zebra', HEX.dk1, 'Herd grazer with a rear kick. Modified: stripes for herd camouflage, sprint', 'One mouth; in the base engine its kick also hurts its own herd'],
+    ['Rhino', HEX.accent5, 'Armoured grazer. Modified: horn, armour adds health', 'Slow; modified armour costs food, so calves are expensive'],
+    ['Leopard', HEX.accent1, 'Jaws beside the mouth. Modified: meat-only, strong bite, cache near trees', 'Base: no faster than prey. Modified: no armour, kicked and gored']];
 sp.forEach((r, i) => {
     const x = 0.6 + i * 4.1;
-    card(s, x, 4.65, 3.85, 2.15);
-    text(s, r[0], {x: x + 0.25, y: 4.8, w: 3.4, h: 0.45, fontSize: 20, bold: true, color: r[1], fontFace: 'Cambria'});
-    text(s, [{text: 'Strength  ', options: {bold: true}}, {text: r[2]}], {x: x + 0.25, y: 5.3, w: 3.4, h: 0.75, fontSize: 13});
-    text(s, [{text: 'Weakness  ', options: {bold: true}}, {text: r[3]}], {x: x + 0.25, y: 6.05, w: 3.4, h: 0.7, fontSize: 13});
+    card(s, x, 4.6, 3.85, 2.1);
+    text(s, r[0], {x: x + 0.25, y: 4.75, w: 3.4, h: 0.4, fontSize: 18, bold: true, color: r[1], fontFace: 'Cambria'});
+    text(s, r[2], {x: x + 0.25, y: 5.2, w: 3.4, h: 0.7, fontSize: 13});
+    text(s, [{text: 'Weakness  ', options: {bold: true}}, {text: r[3]}], {x: x + 0.25, y: 5.95, w: 3.4, h: 0.7, fontSize: 13});
 });
-s.addNotes('Grass: 3 producers, spreads fast, needs water. Bush: 5 woody cells, cannot be grazed, poor food. Trees: long-lived cover. Base runs use the same body plans without the new cells.');
+s.addNotes('Base species use only original cells. Grass is 3 producers, bush 5 (producers in the base engine, woody cells in the modified one). Trees exist only in the modified engine.');
+
+// Part 1 divider
+s = slide('SECTION_DARK', 'Part 1: base engine');
+s.addText('Part 1: the base engine', {placeholder: 'title'});
+s.addText('What it can and cannot do, how we tried to get suicide or failure to adapt, and what happened', {placeholder: 'body'});
 
 // 4. Base engine limits
-s = slide('CONTENT', 'Base engine');
-s.addText('The base engine leaves only one road to suicide: killers', {placeholder: 'title'});
-card(s, 0.6, 1.4, 5.9, 3.9, 'EEF5EA');
-text(s, 'What the base engine allows', {x: 0.9, y: 1.6, w: 5.3, h: 0.5, fontSize: 20, bold: true, color: HEX.accent2, fontFace: 'Cambria'});
+s = slide('CONTENT', 'Part 1: base engine');
+s.addText('What the base engine can and cannot do', {placeholder: 'title'});
+card(s, 0.6, 1.4, 5.9, 3.3, 'EEF5EA');
+text(s, 'It allows', {x: 0.9, y: 1.6, w: 5.3, h: 0.5, fontSize: 20, bold: true, color: HEX.accent2, fontFace: 'Cambria'});
 text(s, [
-    {text: 'Killer cells damage plants, and a dead plant becomes food: a windfall that rewards the trait', options: {bullet: true, breakLine: true}},
-    {text: 'Each kill removes a producer for good', options: {bullet: true, breakLine: true}},
-    {text: 'Plants can choke the world with uneaten food', options: {bullet: true}}], {x: 0.9, y: 2.25, w: 5.3, h: 3.8, fontSize: 16, paraSpaceAfter: 10});
-card(s, 6.8, 1.4, 5.9, 3.9, 'F8ECEC');
-text(s, 'What it cannot do', {x: 7.1, y: 1.6, w: 5.3, h: 0.5, fontSize: 20, bold: true, color: HEX.accent4, fontFace: 'Cambria'});
+    {text: 'Killer cells hurt everything they touch: plants, other species and their own kind', options: {bullet: true, breakLine: true}},
+    {text: 'Anything that dies becomes food, so killing is rewarded with a meal', options: {bullet: true, breakLine: true}},
+    {text: 'Uneaten food blocks births', options: {bullet: true, breakLine: true}},
+    {text: 'Mutation can add, change or remove any cell', options: {bullet: true}}], {x: 0.9, y: 2.2, w: 5.3, h: 3.1, fontSize: 15, paraSpaceAfter: 8});
+card(s, 6.8, 1.4, 5.9, 3.3, 'F8ECEC');
+text(s, 'It cannot do', {x: 7.1, y: 1.6, w: 5.3, h: 0.5, fontSize: 20, bold: true, color: HEX.accent4, fontFace: 'Cambria'});
 text(s, [
-    {text: 'Nothing starves: animals only die of age or damage', options: {bullet: true, breakLine: true}},
-    {text: 'Grass and bush drop identical food, so there is no worse food to fall back on', options: {bullet: true, breakLine: true}},
-    {text: 'Leopards eat plant food, so they never depend on prey', options: {bullet: true, breakLine: true}},
-    {text: 'Mouths cannot hurt plants, so overgrazing is impossible', options: {bullet: true}}], {x: 7.1, y: 2.25, w: 5.3, h: 3.8, fontSize: 16, paraSpaceAfter: 10});
-text(s, 'So in the base engine, suicide can only run through evolved killer cells that destroy plants.', {x: 0.6, y: 5.65, w: 12.1, h: 0.6, fontSize: 18, bold: true, color: HEX.dk2});
-s.addNotes('Base runs: 6 conditions x 3 seeds x 40k ticks, original rules only; mutation could not create our new cell types.');
+    {text: 'Starvation: animals only die of age or damage', options: {bullet: true, breakLine: true}},
+    {text: 'Worse food: grass and bush food are identical', options: {bullet: true, breakLine: true}},
+    {text: 'Predator dependence: leopards eat plant food too', options: {bullet: true, breakLine: true}},
+    {text: 'Overgrazing: mouths cannot hurt plants', options: {bullet: true, breakLine: true}},
+    {text: 'Speed: every animal moves one cell per tick', options: {bullet: true}}], {x: 7.1, y: 2.2, w: 5.3, h: 3.1, fontSize: 15, paraSpaceAfter: 8});
+text(s, 'So in the base engine the only road to collapse runs through killer cells, and our grazing hypothesis cannot be tested.', {x: 0.6, y: 5.05, w: 12.1, h: 0.7, fontSize: 18, bold: true, color: HEX.dk2});
+s.addNotes('Base runs: original rules plus our Assignment 2 plant-reproduction change. Every new setting off; mutation cannot create our new cells.');
 
-// 5. Base suicide timeline
-s = slide('CONTENT', 'Base engine');
-s.addText('Base engine: zebras evolved a plant-killer and ate their world', {placeholder: 'title'});
+// 5. How we tried
+s = slide('CONTENT', 'Part 1: base engine');
+s.addText('How we tried to get suicide or failure to adapt', {placeholder: 'title'});
+const tries = [['Default', 'Original settings as shipped: does anything collapse on its own?'],
+    ['Plant-kill control', 'Route 1: zebras start without a killer; insta-kill on. Will a plant-killing trait evolve, spread and destroy the food?'],
+    ['Plant-kill, seeded', 'The same route with the killer given at the start'],
+    ['Harsh food', 'Food production 2: does anyone fail, or adapt?'],
+    ['No mutation', 'Food production 2 and no mutation: the failure-to-adapt baseline'],
+    ['Clogging', 'Route 2: fast plants, few grazers. Can plants choke on their own food?']];
+tries.forEach((t, i) => {
+    const x = 0.6 + (i % 3) * 4.1, y = 1.4 + Math.floor(i / 3) * 2.6;
+    card(s, x, y, 3.85, 2.35);
+    badge(s, x + 0.3, y + 0.3, String(i + 1), i === 1 || i === 5 ? HEX.accent4 : HEX.accent1);
+    text(s, t[0], {x: x + 0.3, y: y + 0.95, w: 3.3, h: 0.45, fontSize: 18, bold: true, fontFace: 'Cambria'});
+    text(s, t[1], {x: x + 0.3, y: y + 1.4, w: 3.3, h: 0.9, fontSize: 13, color: '444444'});
+});
+s.addNotes('Each condition: 3 seeds of 40,000 ticks, screenshots at fixed ticks and at every collapse.');
+
+// 6. Evolved killer
+s = slide('CONTENT', 'Part 1: base engine');
+s.addText('When the killer had to evolve, the herd ate its world', {placeholder: 'title'});
 img(s, FIG + '/timeline-base-suicide.png', 0.6, 1.3, 8.9, 2448 / 1234);
-stat(s, 9.9, 1.4, 2.9, '3 of 3', 'seeds met all four criteria in the plant-kill control', HEX.accent4);
-stat(s, 9.9, 3.1, 2.9, '560', 'zebras at the peak (seed 2, tick 8,200)', HEX.dk1);
-stat(s, 9.9, 4.8, 2.9, '14,881', 'tick when the last zebra died; the last grass went at 11,900', HEX.accent1);
-s.addNotes('Zebras started without a killer cell. One evolved, spread, destroyed bushes by tick 6,000 and grass by 11,900; zebras collapsed at 14,100. Seeds 1 and 3 peaked at 307 and 312 and were extinct by about tick 6,000.');
+stat(s, 9.9, 1.4, 2.9, '1 of 3', 'seeds met all four criteria; the other 2 collapsed but kept their grass', HEX.accent4);
+stat(s, 9.9, 3.1, 2.9, '528', 'zebras at the peak, seed 2; killers then on 89-100% of the herd', HEX.dk1);
+stat(s, 9.9, 4.8, 2.9, '14,005', 'tick the last zebra died; the last grass went at 11,700', HEX.accent1);
+s.addNotes('Seed 2: a killer evolved and spread because every plant or zebra it killed became food. Bushes gone by 4,900, grass by 11,700, zebras by 14,005. Seeds 1 and 3: killers mostly hit other zebras; carcasses piled up as food and blocked births, so the herd died out while grass survived.');
 
-// 6. Base all conditions (native stacked bar)
-s = slide('CONTENT', 'Base engine');
-s.addText('Only the evolved plant-killer met every criterion', {placeholder: 'title'});
+// 7. Seeded kick
+s = slide('CONTENT', 'Part 1: base engine');
+s.addText('With the kick seeded, zebras destroyed their own world', {placeholder: 'title'});
+img(s, FIG + '/base-zebra-deaths.png', 0.6, 1.35, 7.6, 1200 / 480);
+stat(s, 8.7, 1.4, 4.0, '81-97%', 'of zebra deaths caused by other zebras\' kicks (leopards 0-10%)', HEX.accent4);
+stat(s, 8.7, 3.1, 4.0, 'tick 6,100', 'latest point by which all grass was gone; bushes by 1,500', HEX.accent2);
+stat(s, 8.7, 4.8, 4.0, 'tick 8,000', 'latest zebra extinction in every condition with the kick', HEX.dk1);
+text(s, 'The kick was given, not evolved, so this is a self-destroying design, not evolutionary suicide.', {x: 0.6, y: 4.6, w: 7.6, h: 0.8, fontSize: 15, bold: true, color: HEX.dk2});
+s.addNotes('Default, harsh, no-mutation and seeded plant-kill. The seeded plant-kill runs had no leopards, so zebra kicks alone destroyed the plants. Kicks also killed most rhinos (69 of 90 deaths in default seed 1).');
+
+// 8. Base outcomes + why
+s = slide('CONTENT', 'Part 1: base engine');
+s.addText('Base engine verdict, and why we had to change it', {placeholder: 'title'});
 const bl = DATA.base.map(b => b[0]);
 s.addChart(pres.charts.BAR, [
-    {name: 'Evolutionary suicide', labels: bl, values: DATA.base.map(b => b[1])},
-    {name: 'Other extinction', labels: bl, values: DATA.base.map(b => b[2])},
-    {name: 'Survived', labels: bl, values: DATA.base.map(b => b[3])}],
-    Object.assign({x: 0.6, y: 1.35, w: 7.4, h: 5.3, barDir: 'bar', barGrouping: 'stacked', chartColors: [HEX.accent4, '9CA3AF', HEX.accent2],
-        showLegend: true, legendPos: 'b', showTitle: true, title: 'Zebra outcome, 3 seeds per condition', valAxisMaxVal: 3, valAxisMajorUnit: 1,
+    {name: 'Suicide (all 4 criteria)', labels: bl, values: DATA.base.map(b => b[1])},
+    {name: 'Suicide candidate (3 of 4)', labels: bl, values: DATA.base.map(b => b[2])},
+    {name: 'Other collapse', labels: bl, values: DATA.base.map(b => b[3])},
+    {name: 'Survived', labels: bl, values: DATA.base.map(b => b[4])}],
+    Object.assign({x: 0.6, y: 1.35, w: 7.2, h: 5.3, barDir: 'bar', barGrouping: 'stacked', chartColors: [HEX.accent4, 'E59A9A', '9CA3AF', HEX.accent2],
+        showLegend: true, legendPos: 'b', showTitle: true, title: 'Zebra outcome, 3 seeds per condition', valAxisMaxVal: 3, valAxisMajorUnit: 1, catAxisOrientation: 'maxMin',
         showValue: true, dataLabelPosition: 'ctr', dataLabelColor: 'FFFFFF', dataLabelFontSize: 11, dataLabelFontFace: '+mn-lt', dataLabelFormatCode: '0;;;'}, axis));
 text(s, [
-    {text: 'Seeded killer: ', options: {bold: true}}, {text: 'same collapse, but the trait was given, not evolved, so it fails criterion 2', options: {breakLine: true}},
+    {text: 'Suicide: ', options: {bold: true}}, {text: 'yes, once, when the killer evolved', options: {breakLine: true}},
     {text: ' ', options: {breakLine: true}},
-    {text: 'Default and harsh: ', options: {bold: true}}, {text: 'booms then collapses with no trait. Rhinos crowded zebras out; in one harsh seed rhinos evolved killers and met all four criteria', options: {breakLine: true}},
+    {text: 'Failure to adapt: ', options: {bold: true}}, {text: 'zebras with no mutation; leopards in every condition (no speed advantage), extinct by tick 1,300', options: {breakLine: true}},
     {text: ' ', options: {breakLine: true}},
-    {text: 'No mutation: ', options: {bold: true}}, {text: 'extinct in 3 of 3 seeds: the failure-to-adapt baseline', options: {breakLine: true}},
+    {text: 'Clogging failed: ', options: {bold: true}}, {text: 'grass never choked; the zebras kicked each other to death first', options: {breakLine: true}},
     {text: ' ', options: {breakLine: true}},
-    {text: 'Clogging: ', options: {bold: true}}, {text: 'grass filled the map and blocked births, an engine artefact'}],
-    {x: 8.4, y: 1.5, w: 4.3, h: 5.2, fontSize: 14});
-s.addNotes('This contrast is the base-engine evidence: an evolved trait plus no regrowth limit gives suicide; everything else is failure to adapt or an artefact.');
+    {text: 'Why change the engine: ', options: {bold: true}}, {text: 'the base engine can only collapse through killers. To test overgrazing we needed grazing, worse food, hunger and real predators'}],
+    {x: 8.2, y: 1.5, w: 4.5, h: 5.2, fontSize: 14});
 
-// 7. Section
-s = slide('SECTION_DARK', 'Modifications');
-s.addText('What we changed', {placeholder: 'title'});
-s.addText('Each change opens a road to collapse and adds an escape from it. All default to off.', {placeholder: 'body'});
+// Part 2 divider
+s = slide('SECTION_DARK', 'Part 2: modifications');
+s.addText('Part 2: what we changed', {placeholder: 'title'});
+s.addText('Each change answers a base-engine limit and adds an escape. All default to off.', {placeholder: 'body'});
+
+// 9. Limit -> change
+s = slide('CONTENT', 'Part 2: modifications');
+s.addText('Each change answers a base-engine limit', {placeholder: 'title'});
+const lim = [['Mouths cannot hurt plants', 'Grazing damages grass plants'], ['Grass and bush food identical', 'Bush browse worth 0.35 of grass'],
+    ['Nothing starves', 'Hunger: 1 food per 80 ticks, 10 misses and it dies'], ['Leopards eat plants', 'Meat, jaws (killer beside mouth), feeding at the kill'],
+    ['Killers hurt plants and kin', 'Killers spare plants and own lineage; weapons strike only predators'], ['Everyone moves 1 cell per tick', 'Our sprint rule: extra movers add steps, only when chasing or fleeing'],
+    ['Plant growth unlimited, map uniform', 'Soil water, river, trees and fire']];
+lim.forEach((l, i) => {
+    const y = 1.35 + i * 0.72;
+    card(s, 0.6, y, 5.2, 0.6, 'F8ECEC');
+    text(s, l[0], {x: 0.8, y: y + 0.13, w: 4.9, h: 0.4, fontSize: 14});
+    text(s, '→', {x: 5.9, y: y + 0.08, w: 0.5, h: 0.45, fontSize: 20, bold: true, color: HEX.dk2, align: 'center'});
+    card(s, 6.5, y, 6.2, 0.6, 'EEF5EA');
+    text(s, l[1], {x: 6.7, y: y + 0.13, w: 5.9, h: 0.4, fontSize: 14, bold: i === 5});
+});
+text(s, 'Sprinting is our invention: in the original engine extra movers do nothing. At equal speed, leopards almost never caught zebras.', {x: 0.6, y: 6.45, w: 12.1, h: 0.45, fontSize: 13, color: '555555'});
 
 // 8. Member features
-s = slide('CONTENT', 'Modifications');
+s = slide('CONTENT', 'Part 2: modifications');
 s.addText('Each member feature opens a route and an escape', {placeholder: 'title'});
 const feats = [['Horn cell', 'Vimbai', HEX.accent5, 'Horned rhinos trample plants and food around them', 'Immune to killers; gores attackers 50% per tick'],
     ['Stripe cell', 'Moreblessing', HEX.dk1, 'More surviving zebras means more grazing pressure', 'Leopard eyes miss a striped zebra 25% per striped neighbour, up to 85%'],
@@ -185,28 +241,35 @@ feats.forEach((f, i) => {
     text(s, [{text: 'Escape  ', options: {bold: true, color: HEX.accent2}}, {text: f[4]}], {x: x + 0.3, y: y + 1.55, w: 5.4, h: 0.8, fontSize: 15});
 });
 
-// 9. Shared ecology
-s = slide('CONTENT', 'Modifications');
-s.addText('Shared rules turned the map into a food web', {placeholder: 'title'});
-const eco = [['Worse food', 'Bush browse worth 0.35 of grass'], ['Grazing', 'Mouths beside grass bite the plant (2% per tick)'], ['Hunger', 'Pay 1 food every 80 ticks; die after 10 misses'],
-    ['Meat and jaws', 'Carcasses become meat; a killer beside a mouth digests only meat'], ['River and trees', 'Only 9-cell animals wade; trees hide animals and host caches'], ['Fire', 'Starts in dry vegetation; grazed ground stops it']];
-eco.forEach((e, i) => {
-    const x = 0.6 + (i % 3) * 4.1, y = 1.45 + Math.floor(i / 3) * 2.65;
-    card(s, x, y, 3.85, 2.4);
-    badge(s, x + 0.3, y + 0.3, String(i + 1), [HEX.accent1, HEX.accent2, HEX.accent4, HEX.accent5, HEX.accent3, HEX.dk2][i]);
-    text(s, e[0], {x: x + 0.3, y: y + 0.95, w: 3.3, h: 0.45, fontSize: 19, bold: true, fontFace: 'Cambria'});
-    text(s, e[1], {x: x + 0.3, y: y + 1.45, w: 3.3, h: 0.85, fontSize: 14, color: '444444'});
+// Verdict
+s = slide('SECTION_DARK', 'Part 2: did we achieve it?');
+s.addText('Part 2: did we achieve it?', {placeholder: 'title'});
+s.addText('Not evolutionary suicide. Failure to adapt and predator boom-bust, yes.', {placeholder: 'body'});
+
+s = slide('CONTENT', 'Part 2: did we achieve it?');
+s.addText('Modified engine verdict', {placeholder: 'title'});
+const vd = [['Zebra overgrazing suicide', 'No', HEX.accent4, 'Second mouth spread (up to 2.8) but grass never collapsed: water regrowth, bush fallback and the river kept up'],
+    ['Rhino failure to adapt', 'Yes', HEX.accent2, 'Died out in every seed, mostly of old age: 16 food per calf was too slow'],
+    ['Zebra failure to adapt', 'Yes', HEX.accent2, 'Where no second mouth evolved, herds faded with food still on the map'],
+    ['Leopard collapse', 'Yes, not suicide', HEX.accent1, 'Boom-bust every time; 48 leopards ate every zebra then starved, set up by density, not an evolved trait'],
+    ['Horn or fire collapse', 'No', HEX.accent4, 'Rhinos stayed rare; fires never passed 160 cells on patchy, wet ground']];
+vd.forEach((v, i) => {
+    const y = 1.35 + i * 1.08;
+    card(s, 0.6, y, 12.1, 0.95);
+    text(s, v[0], {x: 0.85, y: y + 0.25, w: 3.6, h: 0.5, fontSize: 16, bold: true, fontFace: 'Cambria'});
+    text(s, v[1], {x: 4.5, y: y + 0.25, w: 1.9, h: 0.5, fontSize: 16, bold: true, color: v[2]});
+    text(s, v[3], {x: 6.4, y: y + 0.17, w: 6.1, h: 0.7, fontSize: 13});
 });
-s.addNotes('Also: sprinting only when chasing or fleeing, armour that costs 2 food and adds 3 health, and weapons (killers away from the mouth) that only strike predators.');
+s.addNotes('The modifications closed the base engine road (killers destroying plants and herds) and opened the grazing road. That road needed grass to regrow slower than it was eaten, and in every setting we tried, regrowth or the fallbacks kept up.');
 
 // 10. Main timeline
-s = slide('CONTENT', 'Modified engine');
+s = slide('CONTENT', 'Part 2: did we achieve it?');
 s.addText('Seed 1: predators boom and vanish, zebras adapt', {placeholder: 'title'});
 img(s, FIG + '/timeline-main-full-1.png', 1.0, 1.25, 11.3, 2448 / 1234);
 s.addNotes('Leopards rose from 16 to 35 by eating the herd, then died out by tick 4,400. Rhinos faded by 12,600. Zebras evolved a second mouth and held at about 200 to 290 to tick 100,000.');
 
 // 11. Five seeds
-s = slide('CONTENT', 'Modified engine');
+s = slide('CONTENT', 'Part 2: did we achieve it?');
 s.addText('Every leopard and rhino population died out', {placeholder: 'title'});
 const ticks = DATA.main['1'].tick.map(t => String(t / 1000));
 s.addChart(pres.charts.LINE, [1, 2, 3, 4, 5].map(k => ({name: 'Seed ' + k, labels: ticks, values: DATA.main[String(k)].zebra})),
@@ -217,7 +280,7 @@ stat(s, 8.7, 3.1, 4.0, '5 of 5', 'rhino populations faded out by tick 17,300', H
 stat(s, 8.7, 4.8, 4.0, '1 of 5', 'zebra lineages alive at 100k: the one that evolved a second mouth', HEX.dk1);
 
 // 12. Three ways to disappear
-s = slide('CONTENT', 'Modified engine');
+s = slide('CONTENT', 'Part 2: did we achieve it?');
 s.addText('Three different ways to disappear', {placeholder: 'title'});
 const ways = [['Leopards', 'Boom then bust', HEX.accent1, 'Killed 57 to 144 zebras per run, then aged out or were kicked to death. Zebras never crashed first: a predator that failed to persist, not over-predation.'],
     ['Rhinos', 'Failure to adapt', HEX.accent5, 'Rose to 27 to 80, then died of old age (54 to 358 per run, versus 17 to 66 killed). At 16 food per calf they could not keep up with zebras.'],
@@ -231,7 +294,7 @@ ways.forEach((w, i) => {
 });
 
 // 13. Ablations and sweeps (native bars)
-s = slide('CONTENT', 'Experiments');
+s = slide('CONTENT', 'Part 2: did we achieve it?');
 s.addText('Without the river or soil water, every zebra lineage died', {placeholder: 'title'});
 const barOpts = (title, color) => Object.assign({barDir: 'bar', chartColors: [color], showLegend: false, showTitle: true, title, valAxisMaxVal: 1.2, valAxisMinVal: 0, valAxisMajorUnit: 0.5,
     valAxisHidden: true, showValue: true, dataLabelFormatCode: '0%', dataLabelPosition: 'outEnd', dataLabelFontSize: 10, dataLabelFontFace: '+mn-lt', dataLabelColor: '444444', catAxisOrientation: 'maxMin'}, axis);
@@ -242,7 +305,7 @@ s.addChart(pres.charts.BAR, [{name: 'alive', labels: DATA.sweep.map(a => a[0]), 
 s.addNotes('3 seeds per condition, so only 0% or 100% is a clear signal. No river, no soil water, weak camouflage and harsh hunger: 0 of 3. No cache: 3 of 3, because leopards died sooner. Mouth cap: 1 of 3, so the extra mouth helped zebras.');
 
 // 14. Mechanism (native line + screenshots)
-s = slide('CONTENT', 'Experiments');
+s = slide('CONTENT', 'Part 2: did we achieve it?');
 s.addText('Zebras streamlined instead of overgrazing', {placeholder: 'title'});
 img(s, FIG + '/timeline-mech-full-5.png', 0.6, 1.25, 12.1, 3260 / 648);
 const mt = DATA.mech.tick.map(t => String(t / 1000));
@@ -255,7 +318,7 @@ text(s, 'Once leopards are gone, eyes, stripes and the kick are dead weight. A s
     {x: 8.3, y: 4.0, w: 4.4, h: 2.8, fontSize: 15});
 
 // 14b. Follow-up runs
-s = slide('CONTENT', 'Experiments');
+s = slide('CONTENT', 'Part 2: did we achieve it?');
 s.addText('Longer, drier, more predators, more fire: same verdict', {placeholder: 'title'});
 const fu = [['200k ticks, 40% rain', HEX.dk1, 'Zebras evolved up to 2.8 mouths as food fell, then died out. Food kept falling after they were gone: grass crowding, not grazing.'],
     ['32 and 48 leopards', HEX.accent1, '48 leopards ate the whole herd in about 1,300 ticks, then starved: over-exploitation from density, not an evolved trait.'],
@@ -273,9 +336,9 @@ s.addNotes('18 follow-up runs, 3 seeds each: 200k default, 200k dry, 32 and 48 l
 // 15. Answers
 s = slide('CONTENT', 'Conclusions');
 s.addText('Answers to the brief', {placeholder: 'title'});
-const qa = [['Did extinction occur?', 'Yes: every leopard and rhino population in the main runs, and zebras in 4 of 5 main seeds.'],
-    ['Suicide or failure?', 'Suicide in the base engine (evolved plant-killers, 3 of 3). Failure to adapt for rhinos and non-adapting zebras; boom-bust for leopards.'],
-    ['Environment or species?', 'The same zebras killed themselves in the base engine and adapted in the savanna. Removing the river or soil water was as decisive as removing a trait.'],
+const qa = [['Did extinction occur?', 'Yes: zebras in every base condition; every leopard and rhino population in the main modified runs.'],
+    ['Suicide or failure?', 'Suicide in the base engine when a killer evolved (1 of 3 meets all criteria). Failure to adapt: base leopards, modified rhinos and non-adapting zebras.'],
+    ['Environment or species?', 'The engine decided the road: killers in the base engine, grazing in ours. Removing the river or soil water was as decisive as removing a trait.'],
     ['Instrumental traits', 'Toward collapse: evolved killers, costly armour, single-prey diet. Away: river, water regrowth, stripes, kick, the second mouth.']];
 qa.forEach((q, i) => {
     const x = 0.6 + (i % 2) * 6.15, y = 1.45 + Math.floor(i / 2) * 2.55;
@@ -293,6 +356,7 @@ text(s, 'Limits', {x: 0.9, y: 1.6, w: 5.3, h: 0.5, fontSize: 20, bold: true, col
 text(s, [
     {text: '3 seeds per ablation and sweep: one seed of difference is noise', options: {bullet: true, breakLine: true}},
     {text: 'Rules were rebalanced during testing (leopard body, sprint, armour, weapons) before the final runs', options: {bullet: true, breakLine: true}},
+    {text: 'Base runs redone with one-mover species after checking that extra movers do nothing', options: {bullet: true, breakLine: true}},
     {text: 'Our overgrazing hypothesis was not observed in 100k ticks', options: {bullet: true, breakLine: true}},
     {text: 'Fires stayed small and leopards never persisted, even with 10x fire and 3x leopards', options: {bullet: true}}], {x: 0.9, y: 2.2, w: 5.3, h: 4.2, fontSize: 15, paraSpaceAfter: 8});
 card(s, 6.8, 1.4, 5.9, 4.2, 'EEF5EA');
@@ -306,7 +370,7 @@ text(s, [
 // 17. Conclusion
 s = slide('TITLE_DARK', 'Conclusions');
 s.addText('The trait that wins is not always the trait that kills', {placeholder: 'title'});
-s.addText('A killer that pays in food today destroyed the base-engine world. In a savanna with water, refuges and fallbacks, the same pressure produced adaptation instead.', {placeholder: 'body'});
+s.addText('In the base engine, a killer that paid in food destroyed the plants and the herd. In our savanna, with water, refuges and fallbacks, the same pressure produced adaptation instead.', {placeholder: 'body'});
 text(s, 'Report, logs, screenshots and code: savanna-experiments/ in the project repository', {x: 0.7, y: 6.4, w: 11.9, h: 0.4, fontSize: 14, color: 'BFBFBF'});
 
 (async () => {

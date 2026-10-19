@@ -5,86 +5,86 @@
  "overrides": {},
  "ticks_run": 40000,
  "all_animals_extinct_at": null,
- "secs": 29.7,
+ "secs": 36.6,
  "final": {
   "tick": 40000,
   "zebra": 0,
   "rhino": 0,
   "leopard": 0,
-  "grass": 0,
-  "bush": 1380,
+  "grass": 2228,
+  "bush": 0,
   "tree": 0,
-  "food": 3307,
+  "food": 3349,
   "browse": 0,
-  "water": 0.594,
+  "water": 0.612,
   "zebra_mouths": 0
  },
  "events": [
   {
-   "tick": 2400,
+   "tick": 1300,
    "lineage": "rhino",
    "event": "collapse",
-   "peak": 22,
-   "peak_tick": 1200
+   "peak": 13,
+   "peak_tick": 400
   },
   {
-   "tick": 2800,
-   "lineage": "rhino",
-   "event": "extinct",
-   "peak": 22,
-   "peak_tick": 1200
-  },
-  {
-   "tick": 15800,
-   "lineage": "zebra",
+   "tick": 1700,
+   "lineage": "bush",
    "event": "collapse",
-   "peak": 306,
-   "peak_tick": 3200
-  },
-  {
-   "tick": 16200,
-   "lineage": "zebra",
-   "event": "extinct",
-   "peak": 306,
-   "peak_tick": 3200
-  },
-  {
-   "tick": 17000,
-   "lineage": "grass",
-   "event": "collapse",
-   "peak": 942,
+   "peak": 119,
    "peak_tick": 200
   },
   {
-   "tick": 17100,
-   "lineage": "grass",
+   "tick": 1900,
+   "lineage": "rhino",
    "event": "extinct",
-   "peak": 942,
+   "peak": 13,
+   "peak_tick": 400
+  },
+  {
+   "tick": 2200,
+   "lineage": "bush",
+   "event": "extinct",
+   "peak": 119,
    "peak_tick": 200
+  },
+  {
+   "tick": 12200,
+   "lineage": "zebra",
+   "event": "collapse",
+   "peak": 348,
+   "peak_tick": 600
+  },
+  {
+   "tick": 12800,
+   "lineage": "zebra",
+   "event": "extinct",
+   "peak": 348,
+   "peak_tick": 600
   }
  ],
  "peaks": {
   "bush": {
-   "peak": 1460,
-   "peak_tick": 36700,
-   "collapsed": false,
-   "extinct": false
-  },
-  "grass": {
-   "peak": 942,
+   "peak": 119,
    "peak_tick": 200,
    "collapsed": true,
    "extinct": true
   },
+  "grass": {
+   "peak": 2229,
+   "peak_tick": 39900,
+   "collapsed": false,
+   "extinct": false
+  },
   "rhino": {
-   "peak": 22,
-   "peak_tick": 1200,
+   "peak": 13,
+   "peak_tick": 400,
    "collapsed": true,
    "extinct": true
   },
   "zebra": {
-   "peak": 306,
-   "peak_tick": 3200,
+   "peak": 348,
+   "peak_tick": 600,
    "collapsed": true,
    "extinct": true
   },

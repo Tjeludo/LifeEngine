@@ -10,12 +10,12 @@
 | ablation | nostripe | 3 | boom then collapse, no trait (unresolved) x2; persisted x1 | boom then collapse, no trait (unresolved) x3 | failure to adapt x3 | 1.36 |
 | ablation | notrees | 3 | boom then collapse, no trait (unresolved) x2; persisted x1 | suicide candidate (3 of 4) x1; boom then collapse, no trait (unresolved) x2 | boom-bust: over-predation x1; boom-bust: cohort aged out x1; persisted x1 | 1.25 |
 | ablation | nowater | 3 | suicide candidate (3 of 4) x2; boom then collapse, no trait (unresolved) x1 | boom then collapse, no trait (unresolved) x2; suicide candidate (3 of 4) x1 | failure to adapt x3 | 1.58 |
-| base | base-clog | 3 | boom then collapse, no trait (unresolved) x3 | collapse under predation x2; suicide candidate (3 of 4) x1 | not seeded x3 | 1.08 |
-| base | base-default | 3 | persisted x1; boom then collapse, no trait (unresolved) x1; suicide candidate (3 of 4) x1 | collapse under predation x2; boom then collapse, no trait (unresolved) x1 | boom-bust: cohort aged out x2; boom-bust: over-predation x1 | 1.71 |
-| base | base-harsh | 3 | boom then collapse, no trait (unresolved) x3 | collapse under predation x1; evolutionary suicide (all 4 criteria) x1; boom then collapse, no trait (unresolved) x1 | boom-bust: over-predation x1; boom-bust: cohort aged out x2 | 1.03 |
-| base | base-nomut | 3 | boom then collapse, no trait (unresolved) x3 | collapse under predation x2; boom then collapse, no trait (unresolved) x1 | failure to adapt x2; boom-bust: cohort aged out x1 | 1.00 |
-| base | base-plantkill | 3 | boom then collapse, no trait (unresolved) x1; failure to adapt x2 | collapse under predation x3 | not seeded x3 | 1.02 |
-| base | base-plantkill-control | 3 | evolutionary suicide (all 4 criteria) x3 | collapse under predation x2; boom then collapse, no trait (unresolved) x1 | not seeded x3 | 1.23 |
+| base | base-clog | 3 | boom then collapse, no trait (unresolved) x3 | collapse under predation x3 | not seeded x3 | 1.17 |
+| base | base-default | 3 | boom then collapse, no trait (unresolved) x3 | collapse under predation x3 | boom-bust: over-predation x2; boom-bust: cohort aged out x1 | 1.07 |
+| base | base-harsh | 3 | boom then collapse, no trait (unresolved) x3 | collapse under predation x3 | failure to adapt x2; boom-bust: over-predation x1 | 1.09 |
+| base | base-nomut | 3 | boom then collapse, no trait (unresolved) x3 | collapse under predation x3 | boom-bust: cohort aged out x1; boom-bust: over-predation x1; failure to adapt x1 | 1.00 |
+| base | base-plantkill | 3 | boom then collapse, no trait (unresolved) x3 | collapse under predation x3 | not seeded x3 | 1.06 |
+| base | base-plantkill-control | 3 | suicide candidate (3 of 4) x2; evolutionary suicide (all 4 criteria) x1 | boom then collapse, no trait (unresolved) x3 | not seeded x3 | 1.92 |
 | extra | fire-extreme | 3 | suicide candidate (3 of 4) x2; persisted x1 | boom then collapse, no trait (unresolved) x2; suicide candidate (3 of 4) x1 | failure to adapt x1; boom-bust: cohort aged out x2 | 2.00 |
 | extra | fire-strong | 3 | persisted x2; boom then collapse, no trait (unresolved) x1 | failure to adapt x1; boom then collapse, no trait (unresolved) x2 | boom-bust: cohort aged out x2; failure to adapt x1 | 1.70 |
 | extra | leopards32 | 3 | boom then collapse, no trait (unresolved) x3 | boom then collapse, no trait (unresolved) x3 | boom-bust: cohort aged out x1; failure to adapt x2 | 1.08 |

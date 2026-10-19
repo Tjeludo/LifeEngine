@@ -82,10 +82,10 @@ species_sheet('base', ['zebra', 'rhino', 'leopard', 'grass', 'bush'], 'species-b
 species_sheet('modified', ['zebra', 'rhino', 'leopard', 'grass', 'bush', 'tree'], 'species-modified.png', 'Modified-engine species (with stripe, horn, cache, woody and tree cells)')
 
 timeline('base/base-plantkill-control-2', [
-    ('frame-000000.png', 'seeded: no zebra has a killer'), ('frame-002500.png', 'killer cells spreading'),
-    ('event-006000-bush-extinct.png', 'bushes destroyed'), ('frame-010000.png', 'grass being destroyed'),
-    ('event-011900-grass-extinct.png', 'last grass gone'), ('event-014100-zebra-collapse.png', 'zebras collapse')],
-    'timeline-base-suicide.png', 'Base engine, plant-kill control seed 2: an evolved killer trait destroys the food supply', extra=traits_extra)
+    ('frame-000000.png', 'seeded: no zebra has a killer'), ('frame-002500.png', 'herd booms, killers appear'),
+    ('event-004900-bush-extinct.png', 'bushes destroyed'), ('event-005100-grass-collapse.png', 'grass collapsing'),
+    ('event-011700-grass-extinct.png', 'last grass gone'), ('event-013700-zebra-collapse.png', 'zebras collapse')],
+    'timeline-base-suicide.png', 'Base engine, plant-kill control seed 2: an evolved killer destroys the plants, then the herd', extra=traits_extra)
 
 timeline('main/full-1', [
     ('frame-000000.png', 'seeded savanna'), ('frame-002500.png', 'leopards peak'), ('event-004400-leopard-extinct.png', 'leopards gone'),
@@ -175,3 +175,27 @@ if os.path.exists(os.path.join(OUT, 'extra', 'leopards48-1')):
     for a in ax: a.tick_params(axis='x', rotation=35); a.grid(axis='y', alpha=.3)
     fig.tight_layout(); fig.savefig(os.path.join(FIG, 'followup-summary.png'), dpi=120); plt.close(fig)
     print('follow-up burnt', burnt)
+
+
+# who killed the zebras in each base condition (seed totals)
+conds = [('base-default', 'Default'), ('base-harsh', 'Harsh food'), ('base-nomut', 'No mutation'), ('base-plantkill', 'Plant-kill (seeded)'),
+         ('base-plantkill-control', 'Plant-kill control'), ('base-clog', 'Clogging')]
+zz, lz, age = [], [], []
+for c, _ in conds:
+    a1 = a2 = a3 = 0
+    for sd in (1, 2, 3):
+        rr = list(csv.DictReader(open(os.path.join(OUT, 'base', f'{c}-{sd}', 'log.csv'))))
+        g = lambda k: sum(float(r.get(k) or 0) for r in rr)
+        a1 += g('zebra_kills_zebra'); a2 += g('leopard_kills_zebra'); a3 += g('zebra_death_age')
+    tot = a1 + a2 + a3 or 1
+    zz.append(a1 / tot); lz.append(a2 / tot); age.append(a3 / tot)
+fig, ax = plt.subplots(figsize=(10, 4))
+y = range(len(conds))
+ax.barh(y, zz, color='#B23A3A', label='killed by other zebras (kick)')
+ax.barh(y, lz, left=zz, color='#D98E04', label='killed by leopards')
+ax.barh(y, age, left=[a + b for a, b in zip(zz, lz)], color='#9CA3AF', label='old age')
+ax.set_yticks(list(y)); ax.set_yticklabels([n for _, n in conds]); ax.invert_yaxis(); ax.set_xlim(0, 1)
+ax.set_xlabel('share of zebra deaths, 3 seeds per condition'); ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.2), ncol=3, fontsize=9)
+ax.set_title('Base engine: who killed the zebras')
+fig.tight_layout(); fig.savefig(os.path.join(FIG, 'base-zebra-deaths.png'), dpi=120); plt.close(fig)
+print('zebra death shares', [(n, round(a, 2), round(b, 2), round(c, 2)) for (_, n), a, b, c in zip(conds, zz, lz, age)])

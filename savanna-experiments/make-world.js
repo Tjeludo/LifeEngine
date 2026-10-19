@@ -52,6 +52,11 @@ let controls, river = true;
 if (BASE) {
     // Original engine: no new cell types exist, so new cells are removed or replaced by original ones
     drop('zebra', 'stripe'); swap('rhino', 'horn', 'armor'); drop('leopard', 'cache'); swap('bush', 'woody', 'producer');
+    // In the original engine one mover is enough and extra movers add nothing (no speed), so base zebras
+    // and leopards get a single mover; the zebra's rear kick moves up to sit behind it.
+    SPECIES.zebra.cells = SPECIES.zebra.cells.filter(c => !(c.state.name === 'mover' && c.loc_row === 1))
+        .map(c => c.state.name === 'killer' ? cell('killer', 0, 1) : c);
+    SPECIES.leopard.cells = SPECIES.leopard.cells.filter(c => !(c.state.name === 'mover' && c.loc_row === 1));
     SPECIES.zebra.brain = {food:2};
     SPECIES.rhino.brain = {food:2};
     SPECIES.leopard.brain = {food:2, mouth:2, mover:2, eye:2, killer:1};
