@@ -11,7 +11,7 @@ This project used an AI assistant. This file records what it was used for and wh
 ## What the group did
 
 - Chose the research question, the hypotheses and the evidence rule for evolutionary suicide (Assignment 3).
-- Chose the species (zebra, rhino, leopard, grass, bush) and the feature each member owns: Horn cell (Vimbai), Stripe cell (Moreblessing), Cache cell (Ashley), soil water and fertility (fourth member).
+- Chose the species (zebra, rhino, leopard, grass, bush) and the feature each of the three members owns: Horn cell (Vimbai), Stripe cell (Moreblessing) and Cache cell (Ashley). The soil water and fertility system was a shared group feature.
 - Directed the work: asked for realistic species designs, approved the designs and the planned modifications, asked for the river, trees, fire and the food and tuning experiments, and decided the run lengths.
 - Checked the work against the source material. For example, a group member found in the Life Engine creator's explanation video that extra mover cells add no speed in the original engine. This led to the base runs being redone and the sprint rule being labelled as our own addition.
 - Decided the structure of the report and presentation, and reviewed the results and wording.
@@ -29,11 +29,10 @@ All results come from running the Life Engine simulation. Every number, chart an
 
 ## Confirmation
 
-Each member confirms they have read the code for their own feature and can explain it.
+The group has three members. Each member confirms they have read the code for their own feature and the shared soil-water system, and can explain it.
 
 | Member | Feature | Confirmed |
 | --- | --- | --- |
 | Vimbai | Horn cell | |
 | Moreblessing | Stripe cell | |
 | Ashley | Cache cell | |
-| Fourth member | Soil water and fertility | |

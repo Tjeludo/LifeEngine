@@ -164,7 +164,7 @@ MODIFICATIONS = """Each change answers a base-engine limit, and each adds an esc
 | Rhinos have nothing special | Horn cell: immune to killers, gores attackers, tramples plants | Vimbai |
 | Zebras have no herd defence | Stripe cell: leopards miss striped zebras in a herd (up to 85%) | Moreblessing |
 | Predators cannot store energy | Cache cell: banks surplus food near trees, spent when starving | Ashley |
-| Plant growth is unlimited | Soil water and fertility; deep-rooted bushes use less water | Fourth member |
+| Plant growth is unlimited | Soil water and fertility; deep-rooted bushes use less water | Shared |
 | The map is uniform | River (only 9-cell animals cross), trees (cover and caching sites), fire | Shared |"""
 
 MODIFIED_RESULT = """**Did we achieve evolutionary suicide in the modified engine? No.** Zebras did evolve a second mouth (up to 2.8 mouths per zebra), but grass food never collapsed because of it: water-limited regrowth, the bush fallback and the river refuge kept the trait from removing its own food. Where food did fall (long dry runs), it kept falling after the zebras died, so plant crowding caused it, not grazing. Capping zebras at one mouth made them die out more often, so the trait was adaptive.

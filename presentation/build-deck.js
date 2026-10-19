@@ -230,7 +230,7 @@ s.addText('Member features', {placeholder: 'title'});
 const feats = [['Horn cell', 'Vimbai', HEX.accent5, 'Horned rhinos trample plants and food around them', 'Immune to killers; gores attackers 50% per tick'],
     ['Stripe cell', 'Moreblessing', HEX.dk1, 'More surviving zebras means more grazing pressure', 'Leopard eyes miss a striped zebra 25% per striped neighbour, up to 85%'],
     ['Cache cell', 'Ashley', HEX.accent1, 'Banking food delays breeding', 'Surplus banked near trees, spent automatically to stave off starvation'],
-    ['Soil water', 'Fourth member', HEX.accent3, 'Grass needs water to produce; dry soil recovers slowly', 'Rain refills soil; deep-rooted bushes take over freed water']];
+    ['Soil water', 'Shared (group)', HEX.accent3, 'Grass needs water to produce; dry soil recovers slowly', 'Rain refills soil; deep-rooted bushes take over freed water']];
 feats.forEach((f, i) => {
     const x = 0.6 + (i % 2) * 6.15, y = 1.4 + Math.floor(i / 2) * 2.75;
     card(s, x, y, 5.95, 2.5);

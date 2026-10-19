@@ -525,7 +525,7 @@ Each change answers a base-engine limit, and each adds an escape so collapse sta
 | Rhinos have nothing special | Horn cell: immune to killers, gores attackers, tramples plants | Vimbai |
 | Zebras have no herd defence | Stripe cell: leopards miss striped zebras in a herd (up to 85%) | Moreblessing |
 | Predators cannot store energy | Cache cell: banks surplus food near trees, spent when starving | Ashley |
-| Plant growth is unlimited | Soil water and fertility; deep-rooted bushes use less water | Fourth member |
+| Plant growth is unlimited | Soil water and fertility; deep-rooted bushes use less water | Shared |
 | The map is uniform | River (only 9-cell animals cross), trees (cover and caching sites), fire | Shared |
 
 ### Did we achieve it?
