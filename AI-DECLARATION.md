@@ -39,4 +39,4 @@ Each member signs and dates their own row.
 | --- | --- | --- |
 | Vimbai | | 20 October 2026 |
 | Moreblessing | | 20 October 2026 |
-| Ashley | | 20 October 2026 |
+| Ashley | A.T Mawoyo | 20 October 2026 |
