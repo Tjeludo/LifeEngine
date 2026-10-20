@@ -33,8 +33,10 @@ All results come from running the Life Engine simulation. Every number, chart an
 
 The group has three members. Each member confirms they have read the code for their own feature and the shared soil-water system, and can explain it.
 
-| Member | Feature | Confirmed |
-| --- | --- | --- |
-| Vimbai | Horn cell | |
-| Moreblessing | Stripe cell | |
-| Ashley | Cache cell | Yes |
+Each member signs and dates their own row.
+
+| Member | Feature | Confirmed | Signature | Date |
+| --- | --- | --- | --- | --- |
+| Vimbai | Horn cell | | | |
+| Moreblessing | Stripe cell | | | |
+| Ashley | Cache cell | Yes | | |
