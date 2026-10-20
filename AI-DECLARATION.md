@@ -16,6 +16,6 @@ Each member confirms they have read the code for their feature and the shared so
 
 | Member | Signature | Date |
 | --- | --- | --- |
-| Vimbai | | 20 October 2026 |
+| Vimbai |V.T.J.Mutsawehuni | 20 October 2026 |
 | Moreblessing |mmabhunu.t | 20 October 2026 |
 | Ashley | A.T Mawoyo | 20 October 2026 |
