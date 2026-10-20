@@ -35,8 +35,8 @@ The group has three members. Each member confirms they have read the code for th
 
 Each member signs and dates their own row.
 
-| Member | Feature | Confirmed | Signature | Date |
-| --- | --- | --- | --- | --- |
-| Vimbai | Horn cell | | | |
-| Moreblessing | Stripe cell | | | |
-| Ashley | Cache cell | Yes | | |
+| Member | Signature | Date |
+| --- | --- | --- |
+| Vimbai | | 20 October 2026 |
+| Moreblessing | | 20 October 2026 |
+| Ashley | | 20 October 2026 |
