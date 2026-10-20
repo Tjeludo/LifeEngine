@@ -2,26 +2,28 @@
 
 CSC4044Z Artificial Life, 2026: Reproducing Evolutionary Suicide
 
-This project used an AI assistant. This file records what it was used for and what the group did, so that markers can judge the work fairly.
+This project used an AI assistant. This file records what we did and what the assistant helped with, so that markers can judge the work fairly.
 
 ## Tool used
 
-- Claude (Anthropic), used through the Claude Code desktop app, between 5 and 19 October 2026.
+- Claude (Anthropic), used through the Claude Code desktop app, between 5 and 20 October 2026.
 
-## What the group did
+## What we did
 
-- Chose the research question, the hypotheses and the evidence rule for evolutionary suicide (Assignment 3).
-- Chose the species (zebra, rhino, leopard, grass, bush) and the feature each of the three members owns: Horn cell (Vimbai), Stripe cell (Moreblessing) and Cache cell (Ashley). The soil water and fertility system was a shared group feature.
-- Directed the work: asked for realistic species designs, approved the designs and the planned modifications, asked for the river, trees, fire and the food and tuning experiments, and decided the run lengths.
-- Checked the work against the source material. For example, a group member found in the Life Engine creator's explanation video that extra mover cells add no speed in the original engine. This led to the base runs being redone and the sprint rule being labelled as our own addition.
-- Decided the structure of the report and presentation, and reviewed the results and wording.
+- We chose the research question, the hypotheses and the evidence rule we used to decide whether a collapse counts as evolutionary suicide (Assignment 3).
+- We chose the species (zebra, rhino, leopard, grass and bush) and split the features between the three of us: the Horn cell (Vimbai), the Stripe cell (Moreblessing) and the Cache cell (Ashley). We designed the soil water and fertility system together as a shared feature.
+- We based the species on real animals and plants, decided their strengths and weaknesses, and approved the final body plans for the base and modified engines.
+- We decided which changes the engine needed, including the river, trees and fire, and planned the experiments: the food and tuning sweeps, the ablations, the run lengths and the follow-up runs.
+- We checked the work against the source material. While watching the Life Engine creator's explanation video we found that extra mover cells add no speed in the original engine. We then had the base runs redone with one-mover species and made sure the sprint rule is described as our own addition.
+- We decided how the report and presentation are structured (base engine first, then our changes, then whether we achieved suicide or failure to adapt) and reviewed the results and the wording.
 
-## What the AI assistant did
+## What the AI assistant helped with
 
-- Wrote most of the code changes in `src/` (new cells, environment rules, hunger, diet, sprint rule, river, trees, fire and the `EcoStats.js` logger) from the group's specifications.
-- Wrote the experiment code in `savanna-experiments/` (world generator, in-browser harness, local server, analysis, figure and observation-log scripts).
-- Ran the 115 simulation runs, tuned settings during testing, and analysed the logs.
-- Drafted the report, the presentation and the observation log, which the group then reviewed and revised.
+- Writing the code changes in `src/` and the experiment scripts in `savanna-experiments/` from our specifications.
+- Debugging problems found during testing, for example leopards that could not make a kill because of where their killer cell and eye were placed, zebra kicks killing rhinos, and slow runs when the browser tab was hidden.
+- Setting up and running the experiments (115 runs), including the world files, the run harness and the screenshots.
+- Analysing the logs and results, and producing the charts, summary tables and observation log.
+- Writing first drafts of the report and slides, which we then reviewed and revised.
 
 ## How the results were produced
 
