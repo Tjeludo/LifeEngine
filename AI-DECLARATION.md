@@ -37,4 +37,4 @@ The group has three members. Each member confirms they have read the code for th
 | --- | --- | --- |
 | Vimbai | Horn cell | |
 | Moreblessing | Stripe cell | |
-| Ashley | Cache cell | |
+| Ashley | Cache cell | Yes |
