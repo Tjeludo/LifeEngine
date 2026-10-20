@@ -1,0 +1,132 @@
+{
+ "variant": "base-default",
+ "seed": 1,
+ "total": 40000,
+ "overrides": {},
+ "ticks_run": 4912,
+ "all_animals_extinct_at": 4912,
+ "secs": 3,
+ "final": {
+  "tick": 4912,
+  "zebra": 0,
+  "rhino": 0,
+  "leopard": 0,
+  "grass": 0,
+  "bush": 0,
+  "tree": 0,
+  "food": 56,
+  "browse": 0,
+  "water": 0.594,
+  "zebra_mouths": 0
+ },
+ "events": [
+  {
+   "tick": 900,
+   "lineage": "leopard",
+   "event": "collapse",
+   "peak": 31,
+   "peak_tick": 200
+  },
+  {
+   "tick": 1000,
+   "lineage": "bush",
+   "event": "collapse",
+   "peak": 71,
+   "peak_tick": 100
+  },
+  {
+   "tick": 1100,
+   "lineage": "leopard",
+   "event": "extinct",
+   "peak": 31,
+   "peak_tick": 200
+  },
+  {
+   "tick": 1200,
+   "lineage": "bush",
+   "event": "extinct",
+   "peak": 71,
+   "peak_tick": 100
+  },
+  {
+   "tick": 1700,
+   "lineage": "rhino",
+   "event": "collapse",
+   "peak": 29,
+   "peak_tick": 500
+  },
+  {
+   "tick": 1700,
+   "lineage": "grass",
+   "event": "collapse",
+   "peak": 272,
+   "peak_tick": 100
+  },
+  {
+   "tick": 1900,
+   "lineage": "grass",
+   "event": "extinct",
+   "peak": 272,
+   "peak_tick": 100
+  },
+  {
+   "tick": 2800,
+   "lineage": "rhino",
+   "event": "extinct",
+   "peak": 29,
+   "peak_tick": 500
+  },
+  {
+   "tick": 4200,
+   "lineage": "zebra",
+   "event": "collapse",
+   "peak": 95,
+   "peak_tick": 400
+  },
+  {
+   "tick": 4912,
+   "lineage": "zebra",
+   "event": "extinct",
+   "peak": 95,
+   "peak_tick": 400
+  }
+ ],
+ "peaks": {
+  "bush": {
+   "peak": 71,
+   "peak_tick": 100,
+   "collapsed": true,
+   "extinct": true
+  },
+  "grass": {
+   "peak": 272,
+   "peak_tick": 100,
+   "collapsed": true,
+   "extinct": true
+  },
+  "rhino": {
+   "peak": 29,
+   "peak_tick": 500,
+   "collapsed": true,
+   "extinct": true
+  },
+  "zebra": {
+   "peak": 95,
+   "peak_tick": 400,
+   "collapsed": true,
+   "extinct": true
+  },
+  "leopard": {
+   "peak": 31,
+   "peak_tick": 200,
+   "collapsed": true,
+   "extinct": true
+  },
+  "tree": {
+   "peak": 0,
+   "peak_tick": 0,
+   "collapsed": false,
+   "extinct": false
+  }
+ }
+}

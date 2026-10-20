@@ -1,6 +1,8 @@
 'use strict';
 
 import Engine from './Engine';
+const Hyperparams = require('./Hyperparameters');
+const WorldConfig = require('./WorldConfig');
 
 $('document').ready(function(){
     let isMobile = mobileCheck();
@@ -8,6 +10,9 @@ $('document').ready(function(){
         alert("Welcome to the Life Engine! Be aware the website is not built for mobile, so try on desktop for the best experience!");
     }
     var engine = new Engine();
+    // handles for the experiment harness and the console
+    window.lifeEngine = engine;
+    window.lifeEngineConfig = {Hyperparams, WorldConfig};
     engine.start(60);
 });
 

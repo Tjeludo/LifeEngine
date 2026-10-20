@@ -18,6 +18,7 @@ class Brain {
     constructor(owner){
         this.owner = owner;
         this.observations = [];
+        this.reacting_to_organism = false;
 
         // corresponds to CellTypes
         this.decisions = {};
@@ -55,6 +56,7 @@ class Brain {
         var decision = Decision.neutral;
         var closest = Hyperparams.lookRange + 1;
         var move_direction = 0;
+        var target = null;
         for (var obs of this.observations) {
             if (obs.cell == null || obs.cell.owner == this.owner) {
                 continue;
@@ -63,9 +65,12 @@ class Brain {
                 decision = this.decisions[obs.cell.state.name];
                 move_direction = obs.direction;
                 closest = obs.distance;
+                target = obs.cell;
             }
         }
         this.observations = [];
+        // remember whether this decision is about another organism (used for sprinting)
+        this.reacting_to_organism = decision != Decision.neutral && target != null && target.owner != null;
         if (decision == Decision.chase) {
             this.owner.changeDirection(move_direction);
             return true;

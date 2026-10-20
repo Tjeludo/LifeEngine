@@ -80,15 +80,26 @@ class GridMap {
     }
 
     serialize() {
+        // meat and browse are stored alongside food so saved worlds keep them
         // Rather than store every single cell, we will store non organism cells (food+walls)
         // and assume everything else is empty. Organism cells will be set when the organism
         // list is loaded. This reduces filesize and complexity.
         let grid = {cell_size:this.cell_size, cols:this.cols, rows:this.rows};
         grid.food = [];
         grid.walls = [];
+        grid.browse = [];
+        grid.meat = [];
+        grid.water = [];
         for (let col of this.grid) {
             for (let cell of col) {
-                if (cell.state===CellStates.wall || cell.state===CellStates.food){
+                if (cell.terrain === 'water') {
+                    grid.water.push({c: cell.col, r: cell.row});
+                    if (cell.state === CellStates.water) continue;
+                }
+                if (cell.state===CellStates.browse || cell.state===CellStates.meat) {
+                    grid[cell.state.name].push({c: cell.col, r: cell.row});
+                }
+                else if (cell.state===CellStates.wall || cell.state===CellStates.food){
                     let c = {c: cell.col, r: cell.row}; // no need to store state
                     if (cell.state===CellStates.food)
                         grid.food.push(c)
@@ -105,6 +116,16 @@ class GridMap {
             this.setCellType(f.c, f.r, CellStates.food);
         for (let w of grid.walls)
             this.setCellType(w.c, w.r, CellStates.wall);
+        for (let b of grid.browse || [])
+            this.setCellType(b.c, b.r, CellStates.browse);
+        for (let m of grid.meat || [])
+            this.setCellType(m.c, m.r, CellStates.meat);
+        for (let w of grid.water || []) {
+            let cell = this.cellAt(w.c, w.r);
+            if (!cell) continue;
+            cell.terrain = 'water';
+            if (cell.state === CellStates.empty) cell.setType(CellStates.water);
+        }
     }
 }
 

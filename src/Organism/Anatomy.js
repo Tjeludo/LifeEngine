@@ -14,6 +14,37 @@ class Anatomy {
         this.is_producer = false;
         this.is_mover = false;
         this.has_eyes = false;
+        this.has_killer = false;
+        this.has_horn = false;
+        this.has_stripe = false;
+        this.has_cache = false;
+        this.diet_cache = undefined;
+    }
+
+    // Jaws = a killer cell orthogonally next to a mouth cell. Organisms with jaws digest meat
+    // (and not plants); a killer elsewhere on the body (e.g. a zebra's rear kick) is only a weapon.
+    isCarnivore() {
+        if (this.diet_cache !== undefined)
+            return this.diet_cache;
+        var carn = false;
+        for (var a of this.cells) {
+            if (a.state !== CellStates.killer) continue;
+            for (var b of this.cells) {
+                if (b.state === CellStates.mouth && Math.abs(a.loc_col-b.loc_col) + Math.abs(a.loc_row-b.loc_row) == 1) {
+                    carn = true; break;
+                }
+            }
+            if (carn) break;
+        }
+        this.diet_cache = carn;
+        return carn;
+    }
+
+    countCells(state) {
+        var n = 0;
+        for (var cell of this.cells)
+            if (cell.state == state) n++;
+        return n;
     }
 
     canAddCellAt(c, r) {
@@ -28,6 +59,7 @@ class Anatomy {
     addDefaultCell(state, c, r) {
         var new_cell = BodyCellFactory.createDefault(this.owner, state, c, r);
         this.cells.push(new_cell);
+        this.diet_cache = undefined;
         return new_cell;
     }
 
@@ -37,12 +69,14 @@ class Anatomy {
         }
         var new_cell = BodyCellFactory.createRandom(this.owner, state, c, r);
         this.cells.push(new_cell);
+        this.diet_cache = undefined;
         return new_cell;
     }
 
     addInheritCell(parent_cell) {
         var new_cell = BodyCellFactory.createInherited(this.owner, parent_cell);
         this.cells.push(new_cell);
+        this.diet_cache = undefined;
         return new_cell;
     }
 
@@ -63,6 +97,7 @@ class Anatomy {
             var cell = this.cells[i];
             if (cell.loc_col == c && cell.loc_row == r){
                 this.cells.splice(i, 1);
+                this.diet_cache = undefined;
                 break;
             }
         }
@@ -83,14 +118,33 @@ class Anatomy {
         this.is_producer = false;
         this.is_mover = false;
         this.has_eyes = false;
+        this.has_killer = false;
+        this.has_horn = false;
+        this.has_stripe = false;
+        this.has_cache = false;
         for (var cell of this.cells) {
-            if (cell.state == CellStates.producer)
+            if (cell.state == CellStates.producer || cell.state == CellStates.woody || cell.state == CellStates.tree)
                 this.is_producer = true;
             if (cell.state == CellStates.mover)
                 this.is_mover = true;
             if (cell.state == CellStates.eye)
                 this.has_eyes = true;
+            if (cell.state == CellStates.killer)
+                this.has_killer = true;
+            if (cell.state == CellStates.horn)
+                this.has_horn = true;
+            if (cell.state == CellStates.stripe)
+                this.has_stripe = true;
+            if (cell.state == CellStates.cache)
+                this.has_cache = true;
         }
+    }
+
+    moverCount() {
+        var n = 0;
+        for (var cell of this.cells)
+            if (cell.state == CellStates.mover) n++;
+        return n;
     }
 
     getRandomCell() {
